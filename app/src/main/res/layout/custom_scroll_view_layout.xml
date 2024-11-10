@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--     Root view  - container view  -> descendant of ViewGroup  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/placeholder"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_top"
+            tools:text="button 1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginVertical="@dimen/margin_top"
+            android:background="@color/cardview_shadow_start_color" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewThird"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_top"
+            android:paddingVertical="50dp"
+            tools:text="Textview text..." />
+
+        <!--        Embedded  view from another xml file-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/constrain_layout_custom_view" />
+
+        </FrameLayout>
+    </LinearLayout>
+
+</ScrollView>
