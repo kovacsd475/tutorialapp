@@ -53,7 +53,6 @@ android {
 }
 
 dependencies {
-//    implementation(":DataCollectionLibrary")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -82,9 +81,11 @@ dependencies {
 
     // Event bus
     implementation(libs.otto)
-//    Barcode reader SDK
+
+    //  Barcode reader SDK
     implementation(files("libs/DataCollection.aar"))
 
+    //  Test dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
