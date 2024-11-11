@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
+import com.honeywell.aidc.AidcManager
 import com.test.samplescannerapplication.R
 import com.test.samplescannerapplication.databinding.ActivityMainBinding
 import com.test.samplescannerapplication.viewmodel.DiceViewModel
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
 
+//
+        AidcManager.create(this) {
+        }
 //        ViewModelProvider(this)[DiceViewModel::class.java]
 
 
