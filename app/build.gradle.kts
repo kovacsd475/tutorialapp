@@ -41,6 +41,11 @@ android {
 
     flavorDimensions += listOf("environment")
     productFlavors {
+        create("localhost") {
+            dimension = "environment"
+//            Special alias to your host loopback interface (127.0.0.1 on your development machine)
+            buildConfigField(type = "String", name = "WEBSOCKET_URL", "\"wss://10.0.2.2:4040\"")
+        }
         create("develop") {
             dimension = "environment"
             buildConfigField(type = "String", name = "WEBSOCKET_URL", "\"wss://...\"")
