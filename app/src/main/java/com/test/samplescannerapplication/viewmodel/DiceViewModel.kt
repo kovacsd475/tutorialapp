@@ -27,6 +27,7 @@ class DiceViewModel : ViewModel() {
         viewModelScope.launch {
             makeDiceRoll()
         }
+        //  Makes another dice roll after 3 secs
         coroutineExample()
     }
 
@@ -49,6 +50,8 @@ class DiceViewModel : ViewModel() {
     private fun coroutineExample() {
         viewModelScope.launch(Dispatchers.Main) {
             Log.d(TAG, "Coroutine start")
+
+            delay(3000)
 
             CoroutineScope(Dispatchers.Default).launch {
                 Log.d(TAG, "Embedded Coroutine start")

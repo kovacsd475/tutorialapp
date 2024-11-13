@@ -48,4 +48,23 @@
     <string name="button_1">Button 1</string>
     <string name="dice_roll">Dice roll</string>
     <string name="number_of_dice_rolls_format_label">Number of dice rolls - %d</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="site_title">Your site</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="btnClientBarcode">Scan code</string>
+    <string name="txtBarcodeTitle">Barcode</string>
 </resources>

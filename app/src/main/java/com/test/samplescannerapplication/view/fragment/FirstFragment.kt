@@ -1,5 +1,6 @@
 package com.test.samplescannerapplication.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -49,7 +50,7 @@ class FirstFragment : Fragment() {
         setupDiceRollButton()
         setupFistButton()
         observeUIState()
-        view.post { }
+        activitySetting()
 //        threadExample()
     }
 
@@ -114,6 +115,29 @@ class FirstFragment : Fragment() {
             name = "ScannerExampleThread"
             start()
         }
+    }
+
+
+    /**
+     * Create buttons to launch demo activities.
+     */
+    private fun activitySetting() {
+//        btnAutomaticBarcode.setOnClickListener(View.OnClickListener { // get the intent action string from AndroidManifest.xml
+//            val barcodeIntent = Intent("android.intent.action.AUTOMATICBARCODEACTIVITY")
+//            startActivity(barcodeIntent)
+//        })
+
+        _binding?.buttonClientBarcode?.setOnClickListener(View.OnClickListener { // get the intent action string from AndroidManifest.xml
+            val barcodeIntent = Intent("android.intent.action.CLIENTBARCODEACTIVITY")
+            startActivity(barcodeIntent)
+        })
+
+//        btnScannerSelectBarcode.setOnClickListener(View.OnClickListener { // get the intent action string from AndroidManifest.xml
+//            val barcodeIntent = Intent(
+//                "android.intent.action.SCANNERSELECTBARCODEACTIVITY"
+//            )
+//            startActivity(barcodeIntent)
+//        })
     }
 
     override fun onDestroyView() {

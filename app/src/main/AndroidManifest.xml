@@ -16,6 +16,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleScannerApplication"
         tools:targetApi="31">
+        <!-- barcode activity -->
+        <activity
+            android:name=".controller.ClientBarcodeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.CLIENTBARCODEACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- settings activity -->
+        <activity
+            android:name=".controller.SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings" />
+        <!-- main activity -->
         <activity
             android:name=".controller.MainActivity"
             android:exported="true"
