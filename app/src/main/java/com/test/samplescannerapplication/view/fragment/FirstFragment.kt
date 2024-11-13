@@ -2,10 +2,10 @@ package com.test.samplescannerapplication.view.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -23,6 +23,7 @@ class FirstFragment : Fragment() {
     private val TAG: String = FirstFragment::class.java.simpleName
     private var _binding: FragmentFirstBinding? = null
     private lateinit var viewModel: DiceViewModel
+    private var thread: Thread? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,6 +49,8 @@ class FirstFragment : Fragment() {
         setupDiceRollButton()
         setupFistButton()
         observeUIState()
+        view.post { }
+//        threadExample()
     }
 
     private fun setupDiceRollButton() {
@@ -81,8 +84,41 @@ class FirstFragment : Fragment() {
         return resources.getString(R.string.number_of_dice_rolls_format_label, numberOfRolls)
     }
 
+    private fun threadExample() {
+        thread = Thread {
+            try {
+                binding.textviewFirst.text = "Before sleep"
+                Thread.sleep(3000)
+
+                activity?.runOnUiThread {
+                    binding.textviewFirst.text = "Execute 1"
+                    Log.d(TAG, "Execute 1")
+                }
+
+                Thread.sleep(10000)
+
+                activity?.runOnUiThread {
+                    binding.textviewFirst.text = "After sleep"
+                    Log.d(TAG, "Execute 1")
+                }
+
+                Log.d(TAG, "Execute after UI update")
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+                Log.e(TAG, "Thread interrupted")
+            }
+
+        }
+
+        thread?.apply {
+            name = "ScannerExampleThread"
+            start()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        thread?.interrupt()
     }
 }

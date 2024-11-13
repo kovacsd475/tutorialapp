@@ -24,12 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
 
-//
-        AidcManager.create(this) {
-        }
 //        ViewModelProvider(this)[DiceViewModel::class.java]
 
 
@@ -43,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 .setAnchorView(R.id.fab).show()
         }
     }
+
 
     override fun onStart() {
         super.onStart()
