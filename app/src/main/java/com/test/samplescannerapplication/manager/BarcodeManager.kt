@@ -5,7 +5,8 @@ import com.honeywell.aidc.BarcodeReader
 import com.honeywell.aidc.InvalidScannerNameException
 
 object BarcodeManager {
-    private var barcodeReader: BarcodeReader? = null
+    var barcodeReader: BarcodeReader? = null
+        private set
 
     fun initialize(aidcManager: AidcManager) {
         try {
@@ -15,6 +16,5 @@ object BarcodeManager {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 }
