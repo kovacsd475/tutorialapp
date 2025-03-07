@@ -22,14 +22,9 @@ import kotlinx.coroutines.launch
  */
 class FirstFragment : Fragment() {
     private val TAG: String = FirstFragment::class.java.simpleName
-    private var _binding: FragmentFirstBinding? = null
+    private var binding: FragmentFirstBinding? = null
     private lateinit var viewModel: DiceViewModel
     private var thread: Thread? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +36,8 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
+        binding = FragmentFirstBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,13 +50,13 @@ class FirstFragment : Fragment() {
     }
 
     private fun setupDiceRollButton() {
-        binding.buttonDiceRoll.setOnClickListener {
+        binding?.buttonDiceRoll?.setOnClickListener {
             viewModel.diceRoll()
         }
     }
 
     private fun setupFistButton() {
-        binding.buttonFirst.setOnClickListener {
+        binding?.buttonFirst?.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
@@ -78,7 +73,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun updateNumberOfRollsTextView(numberOfRolls: Int) {
-        binding.textviewFirst.text = getNumberOfRollsText(numberOfRolls)
+        binding?.textviewFirst?.text = getNumberOfRollsText(numberOfRolls)
     }
 
     private fun getNumberOfRollsText(numberOfRolls: Int): String {
@@ -86,29 +81,31 @@ class FirstFragment : Fragment() {
     }
 
     private fun threadExample() {
-        thread = Thread {
-            try {
-                binding.textviewFirst.text = "Before sleep"
-                Thread.sleep(3000)
+        binding?.apply {
+            thread = Thread {
+                try {
+                    textviewFirst.text = "Before sleep"
+                    Thread.sleep(3000)
 
-                activity?.runOnUiThread {
-                    binding.textviewFirst.text = "Execute 1"
-                    Log.d(TAG, "Execute 1")
+                    activity?.runOnUiThread {
+                        textviewFirst.text = "Execute 1"
+                        Log.d(TAG, "Execute 1")
+                    }
+
+                    Thread.sleep(10000)
+
+                    activity?.runOnUiThread {
+                        textviewFirst.text = "After sleep"
+                        Log.d(TAG, "Execute 1")
+                    }
+
+                    Log.d(TAG, "Execute after UI update")
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                    Log.e(TAG, "Thread interrupted")
                 }
 
-                Thread.sleep(10000)
-
-                activity?.runOnUiThread {
-                    binding.textviewFirst.text = "After sleep"
-                    Log.d(TAG, "Execute 1")
-                }
-
-                Log.d(TAG, "Execute after UI update")
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-                Log.e(TAG, "Thread interrupted")
             }
-
         }
 
         thread?.apply {
@@ -126,8 +123,7 @@ class FirstFragment : Fragment() {
 //            val barcodeIntent = Intent("android.intent.action.AUTOMATICBARCODEACTIVITY")
 //            startActivity(barcodeIntent)
 //        })
-
-        _binding?.buttonClientBarcode?.setOnClickListener(View.OnClickListener { // get the intent action string from AndroidManifest.xml
+        binding?.buttonClientBarcode?.setOnClickListener(View.OnClickListener { // get the intent action string from AndroidManifest.xml
             val barcodeIntent = Intent("android.intent.action.CLIENTBARCODEACTIVITY")
             startActivity(barcodeIntent)
         })
@@ -142,7 +138,6 @@ class FirstFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
         thread?.interrupt()
     }
 }
