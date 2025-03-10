@@ -4,7 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.honeywell.aidc.AidcManager
+import com.test.samplescannerapplication.LogWriter
 import com.test.samplescannerapplication.manager.BarcodeManager
+import okhttp3.logging.HttpLoggingInterceptor
+import java.util.logging.Logger
 
 /**
  * Created by kovacsdavid on 06,november,2024

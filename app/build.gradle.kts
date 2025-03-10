@@ -90,6 +90,9 @@ dependencies {
     //  Barcode reader SDK
     implementation(files("libs/DataCollection.aar"))
     implementation(libs.androidx.preference.ktx)
+    implementation(libs.androidx.preference)
+    implementation(libs.timber)
+    implementation(libs.treessence)
 
     //  Test dependencies
     testImplementation(libs.junit)

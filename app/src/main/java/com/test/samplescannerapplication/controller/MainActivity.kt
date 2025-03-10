@@ -1,19 +1,24 @@
 package com.test.samplescannerapplication.controller
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
-import com.honeywell.aidc.AidcManager
+import com.google.android.material.snackbar.Snackbar
+import com.test.samplescannerapplication.LogWriter
 import com.test.samplescannerapplication.R
 import com.test.samplescannerapplication.databinding.ActivityMainBinding
-import com.test.samplescannerapplication.viewmodel.DiceViewModel
+import fr.bipi.treessence.file.FileLoggerTree
+import timber.log.Timber
+import timber.log.Timber.Tree
+import java.util.logging.Level
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +31,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-//        ViewModelProvider(this)[DiceViewModel::class.java]
+        LogWriter.log(Level.INFO, "TAG", "TEST Log")
 
+//        java.util.logging.Logger.getAnonymousLogger().log(Level.INFO, "Message test")
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -72,7 +78,11 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

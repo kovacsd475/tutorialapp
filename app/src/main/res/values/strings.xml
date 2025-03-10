@@ -67,4 +67,5 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="btnClientBarcode">Scan code</string>
     <string name="txtBarcodeTitle">Barcode</string>
+    <string name="title_activity_settings2">SettingsActivity2</string>
 </resources>

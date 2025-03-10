@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.ScannerApplication"
@@ -25,13 +26,16 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        <!-- settings activity -->
+        </activity> <!-- settings activity -->
         <activity
             android:name=".controller.SettingsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_settings" />
-        <!-- main activity -->
+            android:exported="true"
+            android:label="@string/title_activity_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".controller.MainActivity"
             android:exported="true"
@@ -42,6 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
